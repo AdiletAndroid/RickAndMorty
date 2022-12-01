@@ -16,7 +16,7 @@ class HeroInfoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHeroInfoBinding.inflate(layoutInflater, container, false)
+        binding = FragmentHeroInfoBinding.inflate(inflater, container, false)
         return binding.root
     }
 }
