@@ -4,6 +4,8 @@ import com.example.rickandmorty.domain.model.HeroModel
 
 class GetAllHeroesUseCase {
 
+    fun execute(){
 
+    }
 
 }
