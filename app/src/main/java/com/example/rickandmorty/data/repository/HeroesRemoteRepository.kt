@@ -8,6 +8,14 @@ class HeroesRemoteRepository(
 ) : HeroesRepository {
 
     override suspend fun getAllHeroes(): List<HeroModel> {
-        TODO("Not yet implemented")
+        val response = api.getAllHeroes()
+        return response.results.map { heroResponse ->
+            HeroModel(
+                id = heroResponse.id,
+                image = heroResponse.image,
+                name = heroResponse.name,
+                gender = heroResponse.gender
+            )
+        }
     }
 }

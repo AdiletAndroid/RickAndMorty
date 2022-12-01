@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmorty.databinding.FragmentHeroesListBinding
+import com.example.rickandmorty.domain.model.HeroModel
 import com.example.rickandmorty.presentation.adapter.HeroesAdapter
 import com.example.rickandmorty.presentation.presenter.HeroesListPresenter
 import com.example.rickandmorty.presentation.presenter.HeroesView
@@ -39,5 +40,9 @@ class HeroesListFragment : Fragment(), HeroesView {
     override fun onDestroyView() {
         super.onDestroyView()
         presenter.detachView()
+    }
+
+    override fun showHeroes(heroes: List<HeroModel>) {
+        adapter.setContent(heroes)
     }
 }

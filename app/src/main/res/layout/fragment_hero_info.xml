@@ -36,4 +36,14 @@
         android:textColor="@color/white"
         android:textSize="20sp" />
 
+    <TextView
+        android:id="@+id/text_view_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:gravity="center"
+        android:text="Location"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
 </LinearLayout>

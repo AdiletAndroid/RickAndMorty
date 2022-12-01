@@ -6,8 +6,6 @@ import retrofit2.http.GET
 interface HeroesApi {
 
     @GET("character")
-    suspend fun getAllHeroes(
-
-    ): Call<HeroesListResponse>
+    suspend fun getAllHeroes(): HeroesListResponse
 
 }

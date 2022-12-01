@@ -13,6 +13,12 @@ class HeroesAdapter(
 
     private val data = mutableListOf<HeroModel>()
 
+    fun setContent(heroes: List<HeroModel>) {
+        data.clear()
+        data.addAll(heroes)
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemHeroBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
