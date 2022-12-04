@@ -42,13 +42,13 @@ class HeroesListFragment : Fragment(), HeroesView {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         adapter = HeroesAdapter {
             presenter.loadHeroes()
+            onItemClick()
+            onScrollListener()
         }
         binding.recyclerView.adapter = adapter
 
         presenter.loadHeroes()
-        onItemClick()
 
-        onScrollListener()
     }
 
     override fun onDestroyView() {
