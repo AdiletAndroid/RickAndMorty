@@ -34,14 +34,15 @@ class HeroesAdapter(
 
     inner class ViewHolder(val binding: ItemHeroBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(model: HeroModel) {
+        fun onBind(hero: HeroModel) {
             with(binding) {
-                imageViewPicture.load(model.image)
-                textViewName.text = model.name
-                textViewGender.text = model.gender
+                imageViewPicture.load(hero.image)
+                textViewName.text = hero.name
+                textViewGender.text = hero.gender
 
                 itemView.setOnClickListener {
-                    onItemClick.invoke(model)
+                    onItemClick.invoke(hero)
+                    return@setOnClickListener
                 }
             }
         }

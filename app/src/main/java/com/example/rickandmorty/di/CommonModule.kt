@@ -1,6 +1,7 @@
 package com.example.rickandmorty.di
 
 import com.example.rickandmorty.constants.Constants
+import com.example.rickandmorty.data.local.HeroDao
 import com.example.rickandmorty.data.network.HeroesApi
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -13,6 +14,12 @@ object CommonModule {
             Retrofit.Builder().baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create()).build()
                 .create(HeroesApi::class.java)
+        }
+
+        single {
+
+
+
         }
     }
 }

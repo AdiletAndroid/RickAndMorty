@@ -5,7 +5,9 @@ import com.example.rickandmorty.domain.model.HeroModel
 
 
 class HeroesInteractor(
+
     private val repository: HeroesRepository
+
 ) {
 
     suspend fun getAllHeroes(): List<HeroModel>{

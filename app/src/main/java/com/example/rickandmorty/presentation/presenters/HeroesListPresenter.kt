@@ -1,4 +1,4 @@
-package com.example.rickandmorty.presentation.presenter
+package com.example.rickandmorty.presentation.presenters
 
 import com.example.rickandmorty.domain.interactor.HeroesInteractor
 import kotlinx.coroutines.CoroutineScope
@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class HeroesListPresenter(
-    private val interactor: HeroesInteractor
+    private val interactor: HeroesInteractor,
 ) : CoroutineScope {
 
     override val coroutineContext: CoroutineContext = SupervisorJob() + Dispatchers.Main.immediate
@@ -29,5 +29,4 @@ class HeroesListPresenter(
             view?.showHeroes(heroes)
         }
     }
-
 }
