@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class HeroesListPresenter(
-    private val interactor: HeroesInteractor,
+    private val interactor: HeroesInteractor
 ) : CoroutineScope {
 
     override val coroutineContext: CoroutineContext = SupervisorJob() + Dispatchers.Main.immediate

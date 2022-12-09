@@ -28,7 +28,6 @@ class HeroInfoFragment : Fragment(), HeroInfoView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachView(this)
-        presenter.heroInfo()
     }
 
     override fun showHeroInfo(heroes: List<HeroModel>) {
@@ -42,6 +41,4 @@ class HeroInfoFragment : Fragment(), HeroInfoView {
         super.onDestroyView()
         presenter.detachView()
     }
-
-
 }
