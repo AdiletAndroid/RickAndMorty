@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_dark_background"
+    android:background="#6C6E6A"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".presentation.ui.fragments.HeroInfoFragment">
@@ -23,7 +23,7 @@
         android:layout_marginTop="12dp"
         android:gravity="center"
         android:text="Hero name"
-        android:textColor="@color/white"
+        android:textColor="#C6F195"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -34,7 +34,27 @@
         android:layout_marginTop="12dp"
         android:gravity="center"
         android:text="Hero gender"
-        android:textColor="@color/white"
+        android:textColor="#B2F368"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/text_view_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="Hero status"
+        android:textColor="#B2F368"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/text_view_species"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="Hero species"
+        android:textColor="#B2F368"
         android:textSize="20sp" />
 
 </LinearLayout>

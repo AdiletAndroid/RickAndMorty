@@ -33,9 +33,13 @@ class HeroInfoFragment : Fragment(), HeroInfoView {
 
     override fun showHeroInfo() {
         val heroInfo = arguments?.getSerializable("key") as HeroModel
-        binding.imageViewPicture.load(heroInfo.image)
-        binding.textViewName.text = heroInfo.name
-        binding.textViewGender.text = heroInfo.gender
+        with(binding) {
+            imageViewPicture.load(heroInfo.image)
+            textViewName.text = heroInfo.name
+            textViewGender.text = heroInfo.gender
+            textViewStatus.text = heroInfo.status
+            textViewSpecies.text = heroInfo.species
+        }
     }
 
     override fun onDestroyView() {

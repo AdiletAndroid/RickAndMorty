@@ -14,7 +14,9 @@ class HeroesRemoteRepository(
                 id = heroResponse.id,
                 image = heroResponse.image,
                 name = heroResponse.name,
-                gender = heroResponse.gender
+                gender = heroResponse.gender,
+                status = heroResponse.status,
+                species = heroResponse.species
             )
         }
     }
