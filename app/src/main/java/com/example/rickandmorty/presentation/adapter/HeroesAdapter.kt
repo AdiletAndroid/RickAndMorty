@@ -8,7 +8,7 @@ import com.example.rickandmorty.databinding.ItemHeroBinding
 import com.example.rickandmorty.domain.model.HeroModel
 
 class HeroesAdapter(
-    private val onItemClick: (HeroModel) -> Unit
+    private val onItemClick: OnItemClick
 ) : RecyclerView.Adapter<HeroesAdapter.ViewHolder>() {
 
     private val data = mutableListOf<HeroModel>()
@@ -26,6 +26,9 @@ class HeroesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.onBind(data[position])
+        holder.itemView.setOnClickListener {
+            onItemClick.clickListener(data[position])
+        }
     }
 
     override fun getItemCount(): Int {
@@ -40,11 +43,15 @@ class HeroesAdapter(
                 textViewName.text = hero.name
                 textViewGender.text = hero.gender
 
-                itemView.setOnClickListener {
-                    onItemClick.invoke(hero)
-                    return@setOnClickListener
-                }
+//                itemView.setOnClickListener {
+//                    onItemClick.invoke(hero)
+//                    return@setOnClickListener
+//                }
             }
         }
+    }
+
+    interface OnItemClick{
+        fun clickListener(hero: HeroModel)
     }
 }

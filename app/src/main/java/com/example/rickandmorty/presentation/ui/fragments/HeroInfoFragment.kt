@@ -27,10 +27,11 @@ class HeroInfoFragment : Fragment(), HeroInfoView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        showHeroInfo()
         presenter.attachView(this)
     }
 
-    override fun showHeroInfo(heroes: List<HeroModel>) {
+    override fun showHeroInfo() {
         val heroInfo = arguments?.getSerializable("key") as HeroModel
         binding.imageViewPicture.load(heroInfo.image)
         binding.textViewName.text = heroInfo.name

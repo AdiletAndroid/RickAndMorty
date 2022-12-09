@@ -10,18 +10,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentHeroesListBinding
 import com.example.rickandmorty.domain.model.HeroModel
-import com.example.rickandmorty.presentation.adapter.EndlessScrollListener
 import com.example.rickandmorty.presentation.adapter.HeroesAdapter
 import com.example.rickandmorty.presentation.presenters.HeroesListPresenter
 import com.example.rickandmorty.presentation.presenters.HeroesView
 import org.koin.android.ext.android.inject
 
-class HeroesListFragment : Fragment(), HeroesView {
+class HeroesListFragment : Fragment(), HeroesView, HeroesAdapter.OnItemClick {
 
     private val presenter: HeroesListPresenter by inject()
     private lateinit var adapter: HeroesAdapter
     private lateinit var binding: FragmentHeroesListBinding
-    //private val adapter by lazy { HeroesAdapter(this::onItemClick) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,11 +33,8 @@ class HeroesListFragment : Fragment(), HeroesView {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachView(this)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = HeroesAdapter(onItemClick = {
-            presenter.loadHeroes()
-            onItemClick()
-           //onScrollListener()
-        })
+        adapter = HeroesAdapter(this)
+        
         binding.recyclerView.adapter = adapter
 
         presenter.loadHeroes()
@@ -55,14 +50,12 @@ class HeroesListFragment : Fragment(), HeroesView {
         adapter.setContent(heroes)
     }
 
-    private fun onItemClick() {
-        binding.recyclerView.setOnClickListener {
-            val id = it.id
-            val bundle = Bundle()
-            bundle.putSerializable("key", id)
-            findNavController().navigate(R.id.action_heroesListFragment_to_heroInfoFragment, bundle)
-        }
+    override fun clickListener(hero: HeroModel) {
+        val bundle = Bundle()
+        bundle.putSerializable("key", hero)
+        findNavController().navigate(R.id.action_heroesListFragment_to_heroInfoFragment, bundle)
     }
+
 
 //    private fun onScrollListener() {
 //        val scrollListener = EndlessScrollListener(LinearLayoutManager(requireContext())) { page ->
