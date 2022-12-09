@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentHeroesListBinding
 import com.example.rickandmorty.domain.model.HeroModel
+import com.example.rickandmorty.presentation.adapter.EndlessScrollListener
 import com.example.rickandmorty.presentation.adapter.HeroesAdapter
 import com.example.rickandmorty.presentation.presenters.HeroesListPresenter
 import com.example.rickandmorty.presentation.presenters.HeroesView
@@ -34,11 +35,11 @@ class HeroesListFragment : Fragment(), HeroesView, HeroesAdapter.OnItemClick {
         presenter.attachView(this)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         adapter = HeroesAdapter(this)
-        
+
         binding.recyclerView.adapter = adapter
 
         presenter.loadHeroes()
-
+        onScrollListener()
     }
 
     override fun onDestroyView() {
@@ -57,11 +58,11 @@ class HeroesListFragment : Fragment(), HeroesView, HeroesAdapter.OnItemClick {
     }
 
 
-//    private fun onScrollListener() {
-//        val scrollListener = EndlessScrollListener(LinearLayoutManager(requireContext())) { page ->
-//            presenter.loadHeroes()
-//        }
-//        return binding.recyclerView.addOnScrollListener(scrollListener)
-//    }
+    private fun onScrollListener() {
+        val scrollListener = EndlessScrollListener(LinearLayoutManager(requireContext())) { page ->
+            presenter.loadHeroes()
+        }
+        return binding.recyclerView.addOnScrollListener(scrollListener)
+    }
 }
 

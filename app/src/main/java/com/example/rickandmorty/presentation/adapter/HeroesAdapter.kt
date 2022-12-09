@@ -42,11 +42,6 @@ class HeroesAdapter(
                 imageViewPicture.load(hero.image)
                 textViewName.text = hero.name
                 textViewGender.text = hero.gender
-
-//                itemView.setOnClickListener {
-//                    onItemClick.invoke(hero)
-//                    return@setOnClickListener
-//                }
             }
         }
     }
