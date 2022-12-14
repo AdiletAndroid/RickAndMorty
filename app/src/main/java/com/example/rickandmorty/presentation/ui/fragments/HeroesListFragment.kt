@@ -8,15 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmorty.R
+import com.example.rickandmorty.data.local.HeroEntity
 import com.example.rickandmorty.databinding.FragmentHeroesListBinding
 import com.example.rickandmorty.domain.model.HeroModel
-import com.example.rickandmorty.presentation.adapter.EndlessScrollListener
 import com.example.rickandmorty.presentation.adapter.HeroesAdapter
 import com.example.rickandmorty.presentation.presenters.HeroesListPresenter
-import com.example.rickandmorty.presentation.presenters.HeroesView
+import com.example.rickandmorty.presentation.presenters.HeroesListView
 import org.koin.android.ext.android.inject
 
-class HeroesListFragment : Fragment(), HeroesView, HeroesAdapter.OnItemClick {
+class HeroesListFragment : Fragment(), HeroesListView, HeroesAdapter.OnItemClick {
 
     private val presenter: HeroesListPresenter by inject()
     private lateinit var adapter: HeroesAdapter
@@ -39,7 +39,7 @@ class HeroesListFragment : Fragment(), HeroesView, HeroesAdapter.OnItemClick {
         binding.recyclerView.adapter = adapter
 
         presenter.loadHeroes()
-        onScrollListener()
+        //onScrollListener()
     }
 
     override fun onDestroyView() {
@@ -51,6 +51,10 @@ class HeroesListFragment : Fragment(), HeroesView, HeroesAdapter.OnItemClick {
         adapter.setContent(heroes)
     }
 
+    override fun saveHeroes(hero: List<HeroEntity>) {
+        presenter.saveHeroesList(hero)
+    }
+
     override fun clickListener(hero: HeroModel) {
         val bundle = Bundle()
         bundle.putSerializable("key", hero)
@@ -58,11 +62,11 @@ class HeroesListFragment : Fragment(), HeroesView, HeroesAdapter.OnItemClick {
     }
 
 
-    private fun onScrollListener() {
-        val scrollListener = EndlessScrollListener(LinearLayoutManager(requireContext())) { page ->
-            presenter.loadHeroes()
-        }
-        return binding.recyclerView.addOnScrollListener(scrollListener)
-    }
+//    private fun onScrollListener() {
+//        val scrollListener = EndlessScrollListener(LinearLayoutManager(requireContext())) { page ->
+//            presenter.loadHeroes()
+//        }
+//        return binding.recyclerView.addOnScrollListener(scrollListener)
+//    }
 }
 

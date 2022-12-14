@@ -25,6 +25,11 @@ object CommonModule {
                 "database"
             ).build()
         }
+
+        single {
+            val database = get<AppDatabase>()
+            database.heroDao()
+        }
     }
 }
 

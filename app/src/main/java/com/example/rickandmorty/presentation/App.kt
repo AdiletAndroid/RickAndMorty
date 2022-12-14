@@ -18,7 +18,7 @@ class App : Application() {
             androidContext(this@App)
             modules(
                 HeroesModule.create(),
-                CommonModule.create()
+                CommonModule.create(),
             )
         }
     }

@@ -1,5 +1,6 @@
 package com.example.rickandmorty.presentation.presenters
 
+import com.example.rickandmorty.data.local.HeroEntity
 import com.example.rickandmorty.domain.interactor.HeroesInteractor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,9 +14,9 @@ class HeroesListPresenter(
 
     override val coroutineContext: CoroutineContext = SupervisorJob() + Dispatchers.Main.immediate
 
-    private var view: HeroesView? = null
+    private var view: HeroesListView? = null
 
-    fun attachView(view: HeroesView) {
+    fun attachView(view: HeroesListView) {
         this.view = view
     }
 
@@ -27,6 +28,13 @@ class HeroesListPresenter(
         launch {
             val heroes = interactor.getAllHeroes()
             view?.showHeroes(heroes)
+        }
+    }
+
+    fun saveHeroesList(hero: List<HeroEntity>) {
+        launch {
+            val data = interactor.saveHeroes(hero)
+            view?.saveHeroes(data)
         }
     }
 }

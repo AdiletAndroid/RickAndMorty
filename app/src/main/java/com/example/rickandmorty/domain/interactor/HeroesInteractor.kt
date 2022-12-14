@@ -1,8 +1,8 @@
 package com.example.rickandmorty.domain.interactor
 
+import com.example.rickandmorty.data.local.HeroEntity
 import com.example.rickandmorty.data.repository.HeroesRepository
 import com.example.rickandmorty.domain.model.HeroModel
-import kotlinx.coroutines.flow.Flow
 
 
 class HeroesInteractor(
@@ -13,6 +13,10 @@ class HeroesInteractor(
 
     suspend fun getAllHeroes(): List<HeroModel>{
         return repository.getAllHeroes()
+    }
+
+    suspend fun saveHeroes(heroModel: HeroModel): List<HeroEntity> {
+        return repository.saveHeroes(heroModel)
     }
 
 }
