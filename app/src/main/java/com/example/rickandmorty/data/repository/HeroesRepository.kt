@@ -7,5 +7,5 @@ interface HeroesRepository {
 
     suspend fun getAllHeroes(): List<HeroModel>
 
-    suspend fun saveHeroes(hero: HeroModel): List<HeroEntity>
+    suspend fun saveHeroes(): List<HeroEntity>
 }

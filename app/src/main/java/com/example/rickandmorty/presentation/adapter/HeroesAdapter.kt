@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.rickandmorty.data.local.HeroEntity
 import com.example.rickandmorty.databinding.ItemHeroBinding
 import com.example.rickandmorty.domain.model.HeroModel
 

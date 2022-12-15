@@ -15,8 +15,8 @@ class HeroesInteractor(
         return repository.getAllHeroes()
     }
 
-    suspend fun saveHeroes(heroModel: HeroModel): List<HeroEntity> {
-        return repository.saveHeroes(heroModel)
+    suspend fun saveHeroes(): List<HeroEntity> {
+        return repository.saveHeroes()
     }
 
 }

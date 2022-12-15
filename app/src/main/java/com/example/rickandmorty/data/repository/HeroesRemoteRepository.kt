@@ -7,7 +7,7 @@ import com.example.rickandmorty.domain.model.HeroModel
 
 class HeroesRemoteRepository(
     private val api: HeroesApi,
-    private val dao: HeroDao
+    private val heroDao: HeroDao
 ) : HeroesRepository {
 
     override suspend fun getAllHeroes(): List<HeroModel> {
@@ -24,18 +24,18 @@ class HeroesRemoteRepository(
         }
     }
 
-    override suspend fun saveHeroes(hero: HeroModel): List<HeroEntity> {
-        dao.insert(
-            heroEntity = HeroEntity(
-                id = hero.id,
-                image = hero.image,
-                name = hero.name,
-                gender = hero.gender,
-                status = hero.status,
-                species = hero.species
+    override suspend fun saveHeroes(): List<HeroEntity> {
+        val data = api.getAllHeroes()
+        return data.results.map { heroResponse ->
+            HeroEntity(
+                id = heroResponse.id,
+                image = heroResponse.image,
+                name = heroResponse.name,
+                gender = heroResponse.gender,
+                status = heroResponse.status,
+                species = heroResponse.species
             )
-        )
-        return dao.getAllHeroes()
+        }
     }
 }
 

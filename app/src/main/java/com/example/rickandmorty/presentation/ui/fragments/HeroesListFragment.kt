@@ -39,7 +39,6 @@ class HeroesListFragment : Fragment(), HeroesListView, HeroesAdapter.OnItemClick
         binding.recyclerView.adapter = adapter
 
         presenter.loadHeroes()
-        //onScrollListener()
     }
 
     override fun onDestroyView() {
@@ -52,7 +51,7 @@ class HeroesListFragment : Fragment(), HeroesListView, HeroesAdapter.OnItemClick
     }
 
     override fun saveHeroes(hero: List<HeroEntity>) {
-        presenter.saveHeroesList(hero)
+        presenter.saveHeroesList()
     }
 
     override fun clickListener(hero: HeroModel) {
@@ -60,13 +59,5 @@ class HeroesListFragment : Fragment(), HeroesListView, HeroesAdapter.OnItemClick
         bundle.putSerializable("key", hero)
         findNavController().navigate(R.id.action_heroesListFragment_to_heroInfoFragment, bundle)
     }
-
-
-//    private fun onScrollListener() {
-//        val scrollListener = EndlessScrollListener(LinearLayoutManager(requireContext())) { page ->
-//            presenter.loadHeroes()
-//        }
-//        return binding.recyclerView.addOnScrollListener(scrollListener)
-//    }
 }
 

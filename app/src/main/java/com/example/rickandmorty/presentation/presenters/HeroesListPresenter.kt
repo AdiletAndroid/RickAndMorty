@@ -1,6 +1,5 @@
 package com.example.rickandmorty.presentation.presenters
 
-import com.example.rickandmorty.data.local.HeroEntity
 import com.example.rickandmorty.domain.interactor.HeroesInteractor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,9 +30,9 @@ class HeroesListPresenter(
         }
     }
 
-    fun saveHeroesList(hero: List<HeroEntity>) {
+    fun saveHeroesList() {
         launch {
-            val data = interactor.saveHeroes(hero)
+            val data = interactor.saveHeroes()
             view?.saveHeroes(data)
         }
     }
