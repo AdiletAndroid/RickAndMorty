@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmorty.R
-import com.example.rickandmorty.data.local.HeroEntity
 import com.example.rickandmorty.databinding.FragmentHeroesListBinding
 import com.example.rickandmorty.domain.model.HeroModel
 import com.example.rickandmorty.presentation.adapter.HeroesAdapter
@@ -48,10 +47,6 @@ class HeroesListFragment : Fragment(), HeroesListView, HeroesAdapter.OnItemClick
 
     override fun showHeroes(heroes: List<HeroModel>) {
         adapter.setContent(heroes)
-    }
-
-    override fun saveHeroes(hero: List<HeroEntity>) {
-        presenter.saveHeroesList()
     }
 
     override fun clickListener(hero: HeroModel) {

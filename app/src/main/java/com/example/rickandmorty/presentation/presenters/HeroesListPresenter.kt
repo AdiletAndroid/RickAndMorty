@@ -1,10 +1,7 @@
 package com.example.rickandmorty.presentation.presenters
 
 import com.example.rickandmorty.domain.interactor.HeroesInteractor
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 class HeroesListPresenter(
@@ -23,17 +20,10 @@ class HeroesListPresenter(
         view = null
     }
 
-    fun loadHeroes() {
-        launch {
+    fun loadHeroes() = runBlocking {
+        launch(Dispatchers.IO) {
             val heroes = interactor.getAllHeroes()
             view?.showHeroes(heroes)
-        }
-    }
-
-    fun saveHeroesList() {
-        launch {
-            val data = interactor.saveHeroes()
-            view?.saveHeroes(data)
         }
     }
 }

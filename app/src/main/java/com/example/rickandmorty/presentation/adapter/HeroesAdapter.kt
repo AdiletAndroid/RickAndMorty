@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.rickandmorty.data.local.HeroEntity
 import com.example.rickandmorty.databinding.ItemHeroBinding
 import com.example.rickandmorty.domain.model.HeroModel
 
@@ -36,7 +35,7 @@ class HeroesAdapter(
         return data.size
     }
 
-    inner class ViewHolder(val binding: ItemHeroBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemHeroBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(hero: HeroModel) {
             with(binding) {
@@ -47,7 +46,7 @@ class HeroesAdapter(
         }
     }
 
-    interface OnItemClick{
+    interface OnItemClick {
         fun clickListener(hero: HeroModel)
     }
 }

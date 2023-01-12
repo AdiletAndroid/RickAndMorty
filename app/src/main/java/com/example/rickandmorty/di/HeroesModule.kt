@@ -14,7 +14,7 @@ object HeroesModule {
 
     fun create() = module {
         single {
-            HeroesRemoteRepository(get())
+            HeroesRemoteRepository(get(), get())
         } bind HeroesRepository::class
 
         factory {
