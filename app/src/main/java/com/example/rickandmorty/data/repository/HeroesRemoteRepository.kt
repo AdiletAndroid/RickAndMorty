@@ -1,5 +1,6 @@
 package com.example.rickandmorty.data.repository
 
+import android.util.Log
 import com.example.rickandmorty.data.local.HeroDao
 import com.example.rickandmorty.data.local.HeroEntity
 import com.example.rickandmorty.data.network.HeroesApi
@@ -11,7 +12,9 @@ class HeroesRemoteRepository(
 ) : HeroesRepository {
 
     override suspend fun getAllHeroes(): List<HeroModel> {
+
         val heroes = db.getAllHeroes()
+
         if (heroes.isNotEmpty()) {
             return heroes.map { entity ->
                 HeroModel(
@@ -27,6 +30,8 @@ class HeroesRemoteRepository(
 
         val response = api.getAllHeroes()
 
+        Log.e("responseTag", response.toString())
+
         response.results.forEach {
             val entity = HeroEntity(
                 id = it.id,
@@ -37,6 +42,7 @@ class HeroesRemoteRepository(
                 species = it.species
             )
             db.insert(entity)
+            Log.e("entityTag", entity.toString())
         }
 
         return response.results.map { heroResponse ->

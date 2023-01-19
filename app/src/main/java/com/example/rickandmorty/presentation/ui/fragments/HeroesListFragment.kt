@@ -1,6 +1,7 @@
 package com.example.rickandmorty.presentation.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,6 +54,8 @@ class HeroesListFragment : Fragment(), HeroesListView, HeroesAdapter.OnItemClick
         val bundle = Bundle()
         bundle.putSerializable("key", hero)
         findNavController().navigate(R.id.action_heroesListFragment_to_heroInfoFragment, bundle)
+
+        Log.e("bundleTag", bundle.toString())
     }
 }
 
