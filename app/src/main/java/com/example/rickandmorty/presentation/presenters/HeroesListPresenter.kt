@@ -20,9 +20,10 @@ class HeroesListPresenter(
         view = null
     }
 
-    fun loadHeroes() = runBlocking {
-        launch(Dispatchers.IO) {
-            val heroes = interactor.getAllHeroes()
+    fun loadHeroes() {
+        launch {
+            interactor.loadAllHeroes()
+            val heroes = interactor.getAllLocalHeroes()
             view?.showHeroes(heroes)
         }
     }
