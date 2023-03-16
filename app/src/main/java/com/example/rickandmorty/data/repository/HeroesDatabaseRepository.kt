@@ -1,5 +1,6 @@
 package com.example.rickandmorty.data.repository
 
+import android.util.Log
 import com.example.rickandmorty.data.local.HeroDao
 import com.example.rickandmorty.data.local.HeroEntity
 import com.example.rickandmorty.domain.model.HeroModel
@@ -12,7 +13,6 @@ class HeroesDatabaseRepository(
 
         val heroes = db.getAllHeroes()
 
-
         return heroes.map { entity ->
             HeroModel(
                 id = entity.id,
@@ -24,7 +24,6 @@ class HeroesDatabaseRepository(
             )
         }
     }
-
 
     override suspend fun saveAllHeroes(heroes: List<HeroModel>) {
 
@@ -39,5 +38,6 @@ class HeroesDatabaseRepository(
             )
         }
         db.insert(heroEntities)
+        Log.d("Tag", heroes.toString())
     }
 }

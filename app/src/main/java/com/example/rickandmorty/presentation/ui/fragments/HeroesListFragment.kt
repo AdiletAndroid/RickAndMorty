@@ -55,7 +55,7 @@ class HeroesListFragment : Fragment(), HeroesListView, HeroesAdapter.OnItemClick
         bundle.putSerializable("key", hero)
         findNavController().navigate(R.id.action_heroesListFragment_to_heroInfoFragment, bundle)
 
-        Log.e("bundleTag", bundle.toString())
+        Log.d("bundleTag", bundle.toString())
     }
 }
 

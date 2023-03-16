@@ -1,0 +1,17 @@
+package com.example.rickandmorty.presentation.utils
+
+import android.content.Context
+import android.net.ConnectivityManager
+import kotlin.coroutines.CoroutineContext
+
+object NetworkUtils {
+    fun isNetworkConnected(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
+    }
+}
+
+
+
+

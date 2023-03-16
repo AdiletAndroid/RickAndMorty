@@ -30,6 +30,7 @@ object CommonModule {
             val database = get<AppDatabase>()
             database.heroDao()
         }
+
     }
 }
 
