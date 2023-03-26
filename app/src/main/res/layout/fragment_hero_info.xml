@@ -6,7 +6,7 @@
     android:background="#6C6E6A"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".presentation.ui.fragments.HeroInfoFragment">
+    tools:context="com.example.common.ui.HeroInfoFragment">
 
     <ImageView
         android:id="@+id/image_view_picture"
