@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.R
 import com.example.rickandmorty.common.mvp.BaseMvpFragment
+import com.example.rickandmorty.common.ui.EndlessScrollListener
 import com.example.rickandmorty.databinding.FragmentHeroesListBinding
 import com.example.rickandmorty.details_page.ui.DetailsPageFragment
 import com.example.rickandmorty.main_page.model.Hero
@@ -44,8 +46,14 @@ class HeroesListFragment :
 
         binding.recyclerView.adapter = adapter
 
-        presenter.getHeroes()
+        val scrollListener = EndlessScrollListener(layoutManager) { page ->
+            presenter.getHeroes(page)
+        }
+        binding.recyclerView.addOnScrollListener(scrollListener)
+
+        presenter.getHeroes(1)
     }
+
 
     override fun showHeroes(heroes: List<Hero>) {
         adapter.updateList(heroes)

@@ -11,7 +11,7 @@ interface MainPageContract {
     }
 
     interface Presenter: MvpPresenter<View>{
-        fun getHeroes()
+        fun getHeroes(page: Int)
     }
 
 }

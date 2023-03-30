@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 
 abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
     private var rootView: View? = null
+
     @Volatile
     private var counter = 0
 

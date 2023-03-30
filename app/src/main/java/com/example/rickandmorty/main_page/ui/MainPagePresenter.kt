@@ -1,37 +1,24 @@
 package com.example.rickandmorty.main_page.ui
 
 import com.example.rickandmorty.common.mvp.BasePresenter
-import com.example.rickandmorty.main_page.interactor.HeroesDatabaseInteractor
+import com.example.rickandmorty.common.ui.ConnectivityChecker
 import com.example.rickandmorty.main_page.interactor.HeroesInteractor
-import com.example.rickandmorty.utils.NetworkUtils
 import kotlinx.coroutines.launch
 
 class MainPagePresenter(
     private val interactor: HeroesInteractor,
-    private val databaseInteractor: HeroesDatabaseInteractor
+    private val connectivityChecker: ConnectivityChecker
 ) : BasePresenter<MainPageContract.View>(), MainPageContract.Presenter {
 
-//    fun loadHeroes() {
-//        val isNetworkConnecnted = NetworkUtils.isNetworkConnected()
-//        if (isNetworkConnecnted) {
-//            launch {
-//                databaseInteractor.loadAllHeroes()
-//                val heroes = databaseInteractor.getAllLocalHeroes()
-//                view?.showHeroes(heroes)
-//            }
-//        } else {
-//            launch {
-//                val heroes = databaseInteractor.getAllLocalHeroes()
-//                view?.showHeroes(heroes)
-//            }
-//        }
-//    }
+    override fun getHeroes(page: Int) {
 
-    override fun getHeroes() {
         launch {
-            databaseInteractor.loadAllHeroes()
-            val heroes = databaseInteractor.getAllLocalHeroes()
+            if (connectivityChecker.isInternetAvailable()) {
+                interactor.loadAllHeroes(page)
+            }
+            val heroes = interactor.getAllLocalHeroes()
             view?.showHeroes(heroes)
         }
     }
 }
+

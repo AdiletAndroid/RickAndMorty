@@ -14,14 +14,6 @@ class HeroesAdapter(
 ) : RecyclerView.Adapter<HeroesAdapter.ViewHolder>() {
 
     private var data = mutableListOf<Hero>()
-
-//    fun setContent(heroes: List<Hero>) {
-//        data.clear()
-//        data.addAll(heroes)
-//        notifyDataSetChanged()
-//        //diffUtils
-//    }
-
     fun updateList(heroes: List<Hero>) {
         val diffCallback = MyDiffUtilCallback(data, heroes)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
@@ -56,9 +48,5 @@ class HeroesAdapter(
                 onItemClick.invoke(hero)
             }
         }
-    }
-
-    interface OnItemClick {
-        fun openDetailsPage(hero: Hero)
     }
 }

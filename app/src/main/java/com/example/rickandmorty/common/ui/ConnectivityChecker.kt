@@ -1,17 +1,13 @@
-package com.example.rickandmorty.utils
+package com.example.rickandmorty.common.ui
 
 import android.content.Context
 import android.net.ConnectivityManager
 
-object NetworkUtils {
-    fun isNetworkConnected(context: Context): Boolean {
+class ConnectivityChecker(private val context: Context) {
+    fun isInternetAvailable(): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetworkInfo = connectivityManager.activeNetworkInfo
         return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 }
-
-
-
-
