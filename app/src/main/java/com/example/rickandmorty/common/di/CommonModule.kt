@@ -47,7 +47,6 @@ object CommonModule : InjectionModule {
         single {
             ConnectivityChecker(get())
         }
-
     }
 }
 

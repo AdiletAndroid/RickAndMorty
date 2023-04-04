@@ -46,9 +46,9 @@ class HeroesListFragment :
 
         binding.recyclerView.adapter = adapter
 
-        val scrollListener = EndlessScrollListener(layoutManager) { page ->
+        val scrollListener = EndlessScrollListener(layoutManager, { page ->
             presenter.getHeroes(page)
-        }
+        }, hasMore = true)
         binding.recyclerView.addOnScrollListener(scrollListener)
 
         presenter.getHeroes(1)

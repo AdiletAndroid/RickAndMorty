@@ -11,7 +11,10 @@ class HeroesInteractor(
 
     suspend fun loadAllHeroes(page: Int) {
         val heroes = repository.getAllHeroes(page)
-        localRepository.saveAllHeroes(heroes)
+        val changedHeroes = localRepository.getHeroChanges(heroes)
+        if (changedHeroes.isNotEmpty()) {
+            localRepository.saveAllHeroes(heroes)
+        }
     }
 
     suspend fun getAllLocalHeroes(): List<Hero> {
