@@ -10,14 +10,22 @@ class MainPagePresenter(
     private val connectivityChecker: ConnectivityChecker
 ) : BasePresenter<MainPageContract.View>(), MainPageContract.Presenter {
 
+    override fun attach(view: MainPageContract.View) {
+        super.attach(view)
+        launch {
+            interactor.getAllLocalHeroesFlow()
+                .collect {
+                    view.showHeroes(it)
+                }
+        }
+    }
+
     override fun getHeroes(page: Int) {
 
         launch {
             if (connectivityChecker.isInternetAvailable()) {
                 interactor.loadAllHeroes(page)
             }
-            val heroes = interactor.getAllLocalHeroes()
-            view?.showHeroes(heroes)
         }
     }
 }

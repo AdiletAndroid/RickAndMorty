@@ -7,6 +7,9 @@ import retrofit2.http.Query
 interface MainPageApi {
 
     @GET("character")
-    suspend fun getAllHeroes(@Query("pages") page: Int): HeroesListResponse
+    suspend fun getAllHeroes(
+        @Query("page") page: Int,
+        @Query("count") count: Int = 20
+    ): HeroesListResponse
 
 }
